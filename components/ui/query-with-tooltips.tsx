@@ -46,7 +46,7 @@ function segmentQuery(query: string, explanations: QueryExplanation[]): Array<{ 
   let lastIndex = 0;
 
   // Sort explanations by their position in the query
-  const sortedExplanations = explanations
+  const sortedExplanations = (Array.isArray(explanations) ? explanations : [])
     .map(exp => ({ ...exp, index: query.indexOf(exp.section) }))
     .filter(exp => exp.index !== -1)
     .sort((a, b) => a.index - b.index);

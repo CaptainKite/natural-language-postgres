@@ -3,6 +3,8 @@ import { Button } from "./ui/button";
 import { QueryWithTooltips } from "./ui/query-with-tooltips";
 import { QueryExplanation } from "@/lib/types";
 import { CircleHelp, Loader2 } from "lucide-react";
+import { explainQuery } from "@/app/actions";
+import { string } from "zod";
 
 export const QueryViewer = ({
   activeQuery,
@@ -20,10 +22,14 @@ export const QueryViewer = ({
   const handleExplainQuery = async () => {
     setQueryExpanded(true);
     setLoadingExplanation(true);
-
-    // TODO: generate explanation and update state
-
-    setLoadingExplanation(false);
+    try {
+      const explanations = await explainQuery(inputValue, activeQuery);
+      setQueryExplanations(explanations);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoadingExplanation(false);
+    }
   };
 
   if (activeQuery.length === 0) return null;

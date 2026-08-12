@@ -1,8 +1,8 @@
-import { sql } from '@vercel/postgres';
 import fs from 'fs';
 import csv from 'csv-parser';
 import path from 'path';
 import "dotenv/config"
+import { executeQuery } from "./db";
 
 function parseDate(dateString: string): string {
   const parts = dateString.split('/');
@@ -17,7 +17,8 @@ function parseDate(dateString: string): string {
 }
 
 export async function seed() {
-  const createTable = await sql`
+  const createTable = await executeQuery(
+    `
     CREATE TABLE IF NOT EXISTS unicorns (
       id SERIAL PRIMARY KEY,
       company VARCHAR(255) NOT NULL UNIQUE,
@@ -28,7 +29,8 @@ export async function seed() {
       industry VARCHAR(255) NOT NULL,
       select_investors TEXT NOT NULL
     );
-  `;
+  `,
+  );
 
   console.log(`Created "unicorns" table`);
 
@@ -46,19 +48,22 @@ export async function seed() {
   for (const row of results) {
     const formattedDate = parseDate(row['Date Joined']);
 
-    await sql`
+    await executeQuery(
+      `
       INSERT INTO unicorns (company, valuation, date_joined, country, city, industry, select_investors)
-      VALUES (
-        ${row.Company},
-        ${parseFloat(row['Valuation ($B)'].replace('$', '').replace(',', ''))},
-        ${formattedDate},
-        ${row.Country},
-        ${row.City},
-        ${row.Industry},
-        ${row['Select Investors']}
-      )
+      VALUES ($1, $2, $3, $4, $5, $6, $7)
       ON CONFLICT (company) DO NOTHING;
-    `;
+      `,
+      [
+        row.Company,
+        parseFloat(row['Valuation ($B)'].replace('$', '').replace(',', '')),
+        formattedDate,
+        row.Country,
+        row.City,
+        row.Industry,
+        row['Select Investors'],
+      ],
+    );
   }
 
   console.log(`Seeded ${results.length} unicorns`);

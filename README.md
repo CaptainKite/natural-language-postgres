@@ -1,7 +1,7 @@
 # Natural Language PostgreSQL
 
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel-labs%2Fnatural-language-postgres&env=OPENAI_API_KEY&envDescription=Learn%20more%20about%20how%20to%20get%20the%20API%20Keys%20for%20the%20application&envLink=https%3A%2F%2Fgithub.com%2Fvercel-labs%2Fnatural-language-postgres%2Fblob%2Fmain%2F.env.example&demo-title=Natural%20Language%20Postgres&demo-description=Query%20PostgreSQL%20database%20using%20natural%20language%20and%20visualize%20results%20with%20Next.js%20and%20AI%20SDK.&demo-url=https%3A%2F%2Fnatural-language-postgres.vercel.app&stores=%5B%7B%22type%22%3A%22postgres%22%7D%5D)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel-labs%2Fnatural-language-postgres&env=OPENAI_API_KEY&envDescription=Learn%20more%20about%20how%20to%20get%20the%20API%20Keys%20for%20the%20application&envLink=https%3A%2F%2Fgithub.com%2Fvercel-labs%2Fnatural-language-postgres%2Fblob%2Fmain%2F.env.example&demo-title=Natural%20Language%20Postgres&demo-description=Query%20PostgreSQL%20database%20using%20natural%20language%20and%20visualize%20results%20with%20Next.js%20and%20AI%20SDK.&demo-url=https%3A%2F%2Fnatural-language-postgres.vercel.app)
 
 This project is a Next.js application that allows users to query a PostgreSQL database using natural language and visualize the results. It's powered by the AI SDK by Vercel and uses OpenAI's GPT-4o model to translate natural language queries into SQL.
 
@@ -68,14 +68,7 @@ To get the project up and running, follow these steps:
 
    ```
    OPENAI_API_KEY=your_api_key_here
-   POSTGRES_URL="..."
-   POSTGRES_PRISMA_URL="..."
-   POSTGRES_URL_NO_SSL="..."
-   POSTGRES_URL_NON_POOLING="..."
-   POSTGRES_USER="..."
-   POSTGRES_HOST="..."
-   POSTGRES_PASSWORD="..."
-   POSTGRES_DATABASE="..."
+   DATABASE_URL="postgresql://user:password@host:port/database?sslmode=require"
    ```
 4. Download the dataset:
   - Go to https://www.cbinsights.com/research-unicorn-companies
@@ -96,9 +89,9 @@ Your project should now be running on [http://localhost:3000](http://localhost:3
 
 ## Deployment
 
-The project is set up for easy deployment on Vercel. Use the "Deploy with Vercel" button in the repository to create your own instance of the application.
+The project is set up for easy deployment on Vercel. Use the "Deploy with Vercel" button in the repository to create your own instance of the application, then add your Neon `DATABASE_URL` in the Vercel project settings.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel-labs%2Fnatural-language-postgres&env=OPENAI_API_KEY&envDescription=Learn%20more%20about%20how%20to%20get%20the%20API%20Keys%20for%20the%20application&envLink=https%3A%2F%2Fgithub.com%2Fvercel-labs%2Fnatural-language-postgres%2Fblob%2Fmain%2F.env.example&demo-title=Natural%20Language%20Postgres&demo-description=Query%20PostgreSQL%20database%20using%20natural%20language%20and%20visualize%20results%20with%20Next.js%20and%20AI%20SDK.&demo-url=https%3A%2F%2Fnatural-language-postgres.vercel.app&stores=%5B%7B%22type%22%3A%22postgres%22%7D%5D)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel-labs%2Fnatural-language-postgres&env=OPENAI_API_KEY&envDescription=Learn%20more%20about%20how%20to%20get%20the%20API%20Keys%20for%20the%20application&envLink=https%3A%2F%2Fgithub.com%2Fvercel-labs%2Fnatural-language-postgres%2Fblob%2Fmain%2F.env.example&demo-title=Natural%20Language%20Postgres&demo-description=Query%20PostgreSQL%20database%20using%20natural%20language%20and%20visualize%20results%20with%20Next.js%20and%20AI%20SDK.&demo-url=https%3A%2F%2Fnatural-language-postgres.vercel.app)
 
 
 ## Learn More
@@ -108,7 +101,7 @@ To learn more about the technologies used in this project, check out the followi
 - [Next.js Documentation](https://nextjs.org/docs)
 - [AI SDK](https://sdk.vercel.ai/docs)
 - [OpenAI](https://openai.com/)
-- [Vercel Postgres powered by Neon](https://vercel.com/docs/storage/vercel-postgres)
+- [Neon](https://neon.tech/docs)
 - [Framer Motion](https://www.framer.com/motion/)
 - [ShadcnUI](https://ui.shadcn.com/)
 - [Tailwind CSS](https://tailwindcss.com/docs)
